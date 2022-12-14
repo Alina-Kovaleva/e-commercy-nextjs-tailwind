@@ -1,4 +1,4 @@
-# [Demo Website](https://e-commercy-nextjs-tailwind-8k2ae430b-alina-kovaleva.vercel.app/)
+# [Demo Website](https://e-commercy-nextjs-tailwind.vercel.app/)
 
 
 
