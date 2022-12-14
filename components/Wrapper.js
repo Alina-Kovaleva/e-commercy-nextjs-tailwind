@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import { ShoppingCartIcon } from '@heroicons/react/24/outline';
+import { Store } from '../utils/Store';
 
 export default function Wrapper({ title, children }) {
+  const { state, dispatch } = useContext(Store);
+  const { cart } = state;
+
   return (
     <>
       <Head>
@@ -29,9 +33,17 @@ export default function Wrapper({ title, children }) {
                 </g>
               </svg>
             </Link>
-            <div className="flex ml-2 items-center space-x-4">
+            <div className="relative flex ml-2 items-center space-x-4">
               <Link href="/cart">
                 <ShoppingCartIcon className="w-10 text-center" />
+
+                {cart.cartItems.length > 0 && (
+                  <span className="absolute inset-0 object-right-top">
+                    <span className="inline-flex items-center px-2 py-1 rounded-full font-semibold leading-none -mr-6 lg:-mt-1 text-white bg-yellow-400">
+                      {cart.cartItems.reduce((a, b) => a + b.quantity, 0)}
+                    </span>
+                  </span>
+                )}
               </Link>
               <Link href="/login">Sign in</Link>
             </div>
